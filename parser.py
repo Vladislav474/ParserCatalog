@@ -35,7 +35,7 @@ def post_request(id, pageNumber):
 
 
 def pars_oils(data, data_csv, fields):
-    for category in (data['children'][0], data['children'][1]):
+    for category in data['children'][:2]:
         pageNumber = 1
         while True:
             res = post_request(category["id"], pageNumber)
