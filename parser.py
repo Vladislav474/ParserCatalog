@@ -3,6 +3,7 @@ import requests
 import json
 from multiprocessing import Pool
 from data_csv import *
+import os
 
 def write_csv(filename, data, fields):
     with open(filename, 'a') as file:
@@ -93,6 +94,11 @@ def parser(filename, data_csv, fields, id, url_photo):
 
 def main():
     url = 'https://cataloguniversal.autodoc.ru/api/catalogs/universal/categories'
+
+    catalogs = ['result\img_tires', 'result\img_brushes', 'result\img_disks', 'result\img_autochemistry', 'result\img_oils']
+    for catalog in catalogs:
+        if not os.path.isdir(catalog):
+            os.makedirs(catalog)
 
     tasks = []
     with Pool(5) as p:
